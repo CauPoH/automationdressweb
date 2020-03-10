@@ -21,7 +21,7 @@ public class BaseFunc {
     }
 
     public void await() {
-        driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void goToUrl(String url) {
@@ -33,9 +33,9 @@ public class BaseFunc {
         driver.get(url);
     }
 
-    public void selectByValue(By locator, String value) {
+    public void selectByValue(By locator, int value) {
         Select select = new Select(driver.findElement(locator));
-        select.selectByValue(value);
+        select.selectByValue(String.valueOf(value));
     }
 
     public WebElement getElement(By locator) {
@@ -62,10 +62,26 @@ public class BaseFunc {
         action.moveToElement(elementToMove).click(elementToClick).build().perform();
     }
 
-    public void moveHover(WebElement elementToMove) throws InterruptedException {
+
+    public void selectFrame(WebElement selectFrame) {
+        //driver.findElements(By.tagName("iframe"));
+        driver.switchTo().frame(selectFrame);
+    }
+
+
+
+    public void returnToDefaultFrame() {
+        driver.switchTo().defaultContent(); // you are now outside any frames
+    }
+
+
+    public void moveHover(WebElement elementToMove) {
         Actions action = new Actions(driver);
-        action.moveToElement(elementToMove).wait();
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        action.moveToElement(elementToMove);
+    }
+
+    public void sendKeys(By locator,String value){
+        driver.findElement(locator).sendKeys(value);
     }
 
     public void closeBrowser() {
