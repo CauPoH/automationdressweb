@@ -23,8 +23,9 @@ public class ShoppingCart {
         this.baseFunc = baseFunc;
     }
 
-    public void getTotalPriceToCompare(){
-        baseFunc.getElement(TOTALPRICE).getText();
+    public String getTotalPriceToCompare(){
+        String priceTest =baseFunc.getElement(TOTALPRICE).getText();
+        return priceTest;
     }
 
     public void pressProceedToCheckOut(){

@@ -19,6 +19,7 @@ public class TShirts {
     private final By ADDTOCART = By.xpath("//*[@id='add_to_cart']/button");
     private final By SIZEDROPDOWN = By.xpath("//*[@id='group_1']");
     private final By CHECKOUT = By.xpath("//div[@class='layer_cart_cart col-xs-12 col-md-6']/div/a/span");
+    private final By DRESSPRICE = By.xpath("//*[@id='layer_cart_product_price']");
 
 
     public TShirts(BaseFunc baseFunc) {
@@ -49,6 +50,12 @@ public class TShirts {
 
     public void pressAddToCart (){
         baseFunc.getElement(ADDTOCART).click();
+    }
+
+    public String getTShirtItemPrice() {
+        baseFunc.waitVisibility(DRESSPRICE);
+        String priceTest = baseFunc.getElement(DRESSPRICE).getText();
+        return priceTest;
     }
 
     public void checkOut(){

@@ -11,7 +11,7 @@ public class Dresses {
     private final By CONTINUESHOPPING = By.xpath(".//span[contains(@class, 'continue btn btn-default button exclusive-medium')]");
     private final By SIZEDROPDOWN = By.id("group_1");
     private final By ADDTOCART = By.xpath("//*[@id='add_to_cart']/button");
-    private final By DRESSPRICE = By.xpath("//*[@class='ajax_block_products_total']");
+    private final By DRESSPRICE = By.xpath("//*[@id='layer_cart_product_price']");
 
     public Dresses(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
@@ -28,12 +28,10 @@ public class Dresses {
 
 
     public String getDress1ItemPrice() {
-        // baseFunc.getElement(DRESSPRICE).getText();
-        baseFunc.await();
+        baseFunc.waitVisibility(DRESSPRICE);
         String priceTest = baseFunc.getElement(DRESSPRICE).getText();
         return priceTest;
     }
-
 
     public void continueSopping() {
         baseFunc.getElement(CONTINUESHOPPING).click();
@@ -55,6 +53,7 @@ public class Dresses {
     }
 
     public String getDress2ItemPrice() {
+        baseFunc.waitVisibility(DRESSPRICE);
         String dress2Price = baseFunc.getElement(DRESSPRICE).getText();
         return dress2Price;
     }
